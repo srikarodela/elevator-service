@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Service - Elevator Services</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <h1>Elevator Services</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="service.html" class="active">Request Service</a></li>
+                    <li><a href="modules.html">Modules</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Request Service</h2>
+                <p>Fill out the form below to request our elevator services</p>
+            </div>
+        </section>
+
+        <section class="service-form">
+            <div class="container">
+                <div class="form-container">
+                    <div id="message-container"></div>
+                    
+                    <form id="serviceRequestForm" class="service-request-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location *</label>
+                                <input type="text" id="location" name="location" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="elevatorType">Elevator Type *</label>
+                                <select id="elevatorType" name="elevatorType" required>
+                                    <option value="">Select Elevator Type</option>
+                                    <option value="passenger">Passenger Lift</option>
+                                    <option value="goods">Goods Lift</option>
+                                    <option value="hospital">Hospital Lift</option>
+                                    <option value="home">Home Lift</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="urgency">Service Urgency</label>
+                                <select id="urgency" name="urgency">
+                                    <option value="normal">Normal</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="emergency">Emergency</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="problem">Problem Description *</label>
+                            <textarea id="problem" name="problem" rows="5" required placeholder="Please describe the elevator issue or service needed..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                            <button type="submit" class="btn btn-primary">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-info">
+            <div class="container">
+                <h3>Service Information</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>Response Time</h4>
+                        <p>Normal requests: 24-48 hours</p>
+                        <p>Urgent requests: 4-6 hours</p>
+                        <p>Emergency requests: 1-2 hours</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Service Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                        <p>Saturday: 9:00 AM - 4:00 PM</p>
+                        <p>Sunday: Emergency Services Only</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Contact Info</h4>
+                        <p>Phone: +1-234-567-8900</p>
+                        <p>Email: info@elevatorservices.com</p>
+                        <p>Emergency: +1-234-567-8901</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Service Areas</h4>
+                        <p>Commercial Buildings</p>
+                        <p>Residential Complexes</p>
+                        <p>Industrial Facilities</p>
+                        <p>Hospitals & Healthcare</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> +1-234-567-8900</p>
+                    <p><strong>Email:</strong> info@elevatorservices.com</p>
+                    <p><strong>Address:</strong> 123 Main Street, City, State 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                    <p>Sunday: Emergency Services Only</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="service.html">Request Service</a></li>
+                        <li><a href="modules.html">Modules</a></li>
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elevator Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                location: document.getElementById('location').value,
+                elevatorType: document.getElementById('elevatorType').value,
+                urgency: document.getElementById('urgency').value,
+                problem: document.getElementById('problem').value
+            };
+            
+            const errors = validateServiceForm(formData);
+            const messageContainer = document.getElementById('message-container');
+            
+            if (errors.length > 0) {
+                messageContainer.innerHTML = '<div class="error-message">' + errors.join('<br>') + '</div>';
+                return;
+            }
+            
+            try {
+                const request = ServiceRequestManager.addRequest(formData);
+                messageContainer.innerHTML = '<div class="success-message">Service request submitted successfully! We will contact you soon. Request ID: ' + request.id + '</div>';
+                this.reset();
+                
+                setTimeout(() => {
+                    messageContainer.innerHTML = '';
+                }, 10000);
+            } catch (error) {
+                messageContainer.innerHTML = '<div class="error-message">Error submitting request. Please try again.</div>';
+            }
+        });
+        
+        function resetForm() {
+            document.getElementById('serviceRequestForm').reset();
+            document.getElementById('message-container').innerHTML = '';
+        }
+    </script>
+</body>
+</html>

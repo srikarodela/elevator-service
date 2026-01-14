@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator Modules - Elevator Services</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <h1>Elevator Services</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="service.html">Request Service</a></li>
+                    <li><a href="modules.html" class="active">Modules</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Elevator Modules</h2>
+                <p>Explore our range of elevator solutions designed for different needs</p>
+            </div>
+        </section>
+
+        <section class="modules-section">
+            <div class="container">
+                <div id="modulesContainer">
+                    <!-- Modules will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section class="module-info">
+            <div class="container">
+                <h3>Why Choose Our Elevators?</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h4>Safety First</h4>
+                        <p>All our elevators meet international safety standards with multiple safety features and emergency systems.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Energy Efficient</h4>
+                        <p>Modern technology ensures low power consumption and reduced operating costs for your building.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Customizable</h4>
+                        <p>Tailored solutions to match your building's architecture and specific requirements.</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>24/7 Support</h4>
+                        <p>Round-the-clock maintenance and emergency support to ensure uninterrupted service.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> +1-234-567-8900</p>
+                    <p><strong>Email:</strong> info@elevatorservices.com</p>
+                    <p><strong>Address:</strong> 123 Main Street, City, State 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                    <p>Sunday: Emergency Services Only</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="service.html">Request Service</a></li>
+                        <li><a href="modules.html">Modules</a></li>
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elevator Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        function loadModules() {
+            const modules = ModuleManager.getAllModules();
+            const container = document.getElementById('modulesContainer');
+            
+            if (modules.length === 0) {
+                container.innerHTML = '<div class="no-modules"><h3>No modules available</h3><p>Please check back later or contact us for custom solutions.</p></div>';
+                return;
+            }
+            
+            const modulesHTML = modules.map(module => `
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <div class="module-header">
+                            <h3>${module.title}</h3>
+                        </div>
+                        <div class="module-content">
+                            <div class="module-description">
+                                <p>${module.description}</p>
+                            </div>
+                            <div class="module-specs">
+                                <div class="spec-item">
+                                    <span class="spec-label">Capacity:</span>
+                                    <span class="spec-value">${module.capacity}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Speed:</span>
+                                    <span class="spec-value">${module.speed}</span>
+                                </div>
+                            </div>
+                            <div class="module-features">
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    ${module.features.map(feature => `<li>${feature}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="module-footer">
+                            <a href="service.html?elevatorType=${module.title}" class="btn btn-primary">Request Service</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = modulesHTML;
+        }
+        
+        // Load modules when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadModules();
+        });
+        
+        // Check if URL has elevator type parameter and pre-fill service form
+        const urlParams = new URLSearchParams(window.location.search);
+        const elevatorType = urlParams.get('elevatorType');
+        if (elevatorType) {
+            // Store the selected elevator type for the service form
+            sessionStorage.setItem('selectedElevatorType', elevatorType);
+        }
+    </script>
+</body>
+</html>
